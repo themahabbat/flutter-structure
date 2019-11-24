@@ -4,9 +4,9 @@ import 'package:flt/provider.dart';
 
 import './pages/home.dart';
 
-void main() => runApp(_App());
+void main() => runApp(MyApp());
 
-class _App extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<AppState>(

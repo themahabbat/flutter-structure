@@ -3,18 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class AboutPage extends StatelessWidget {
-  Widget okButton(BuildContext context, AppState app_state) {
+  Widget okButton(BuildContext context, AppState appState) {
     return FlatButton(
         child: Text('OK'),
         onPressed: () {
-          app_state.setAuthToken('yeah boi!');
+          appState.setAuthToken('yeah boi!');
           Navigator.pop(context);
         });
   }
 
   @override
   Widget build(BuildContext context) {
-    final app_state = Provider.of<AppState>(context);
+    final appState = Provider.of<AppState>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -25,9 +25,9 @@ class AboutPage extends StatelessWidget {
             textColor: Colors.white,
             onPressed: () {
               AlertDialog alertDialog = AlertDialog(
-                title: Text(app_state.authToken),
+                title: Text(appState.authToken),
                 content: Text("I am content!"),
-                actions: <Widget>[okButton(context, app_state)],
+                actions: <Widget>[okButton(context, appState)],
               );
               showDialog(
                   context: context,

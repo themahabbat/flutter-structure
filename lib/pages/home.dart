@@ -34,63 +34,79 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  final textFieldStyle = TextStyle(fontSize: 24);
+
   @override
   Widget build(BuildContext context) {
-    final app_state = Provider.of<AppState>(context);
+    final appState = Provider.of<AppState>(context);
 
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Container(
-        margin: EdgeInsets.only(top: 20),
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          children: <Widget>[
-            TextField(
-              onChanged: (text) => app_state.setAuthToken(text),
-            ),
-            Text(
-              'You have pushed the button this many times: ${app_state.authToken}',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-            RaisedButton(
-              color: Colors.green,
-              textColor: Colors.white,
-              child: Text('Set Auth Token'),
-              onPressed: () {
-                app_state.setAuthToken('fuck');
-              },
-            ),
-            Container(
-                margin: EdgeInsets.only(top: 20),
-                child: Column(
-                  children: <Widget>[
-                    RaisedButton(
-                      color: Colors.yellow,
-                      textColor: Colors.black,
-                      padding: EdgeInsets.fromLTRB(25, 15, 25, 15),
-                      onPressed: () {
-                        _incrementCounter();
-                      },
-                      child: Text(
-                        'Increment',
-                        style: TextStyle(
-                          fontSize: 16,
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(new FocusNode());
+        },
+        child: Container(
+          color: Colors.white,
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.all(15.0),
+                child: TextField(
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Auth Token',
+                      hintText: 'User Token'),
+                  textAlign: TextAlign.center,
+                  style: textFieldStyle,
+                  onChanged: (text) => appState.setAuthToken(text),
+                ),
+              ),
+              Text(
+                'You have pushed the button this many times: ${appState.authToken}',
+              ),
+              Text(
+                '$_counter',
+                style: Theme.of(context).textTheme.display1,
+              ),
+              RaisedButton(
+                color: Colors.green,
+                textColor: Colors.white,
+                child: Text('Set Auth Token'),
+                onPressed: () {
+                  appState.setAuthToken('fuck');
+                },
+              ),
+              Container(
+                  margin: EdgeInsets.only(top: 20),
+                  child: Column(
+                    children: <Widget>[
+                      RaisedButton(
+                        color: Colors.yellow,
+                        textColor: Colors.black,
+                        padding: EdgeInsets.fromLTRB(25, 15, 25, 15),
+                        onPressed: () {
+                          _incrementCounter();
+                        },
+                        child: Text(
+                          'Increment',
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
                         ),
                       ),
-                    ),
-                    if (_counter > 0)
                       RaisedButton(
                         color: Colors.red,
                         textColor: Colors.white,
                         padding: EdgeInsets.fromLTRB(25, 15, 25, 15),
-                        onPressed: () {
-                          _decrementCounter();
-                        },
+                        onPressed: _counter > 0
+                            ? () {
+                                _decrementCounter();
+                              }
+                            : null,
                         child: Text(
                           'Decrement',
                           style: TextStyle(
@@ -98,16 +114,17 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
-                    FlatButton(
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => AboutPage()));
-                      },
-                      child: Text('About'),
-                    )
-                  ],
-                ))
-          ],
+                      FlatButton(
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => AboutPage()));
+                        },
+                        child: Text('About'),
+                      )
+                    ],
+                  ))
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
