@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.all(15.0),
+                padding: EdgeInsets.all(20),
                 child: TextField(
                   decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
               ),
               Text(
                 '$_counter',
-                style: Theme.of(context).textTheme.display1,
+                style: Theme.of(context).textTheme.display4,
               ),
               RaisedButton(
                 color: Colors.green,
@@ -82,7 +82,8 @@ class _HomePageState extends State<HomePage> {
               ),
               Container(
                   margin: EdgeInsets.only(top: 20),
-                  child: Column(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
                       RaisedButton(
                         color: Colors.yellow,
@@ -114,7 +115,10 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
-                      FlatButton(
+                      RaisedButton(
+                        color: Colors.blue,
+                        textColor: Colors.white,
+                        padding: EdgeInsets.fromLTRB(25, 15, 25, 15),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => AboutPage()));
